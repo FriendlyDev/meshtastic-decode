@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "226006fc52f41af7c65c9e2db63c07e0",
+    "content-hash": "bec12db53bee253076570f5ece00c227",
     "packages": [
         {
             "name": "friendlydev/meshtastic-protobufs",
@@ -4172,7 +4172,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-openssl": "*"
     },
     "platform-dev": [],
