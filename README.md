@@ -24,6 +24,6 @@ Please refer to [LICENSE](./LICENSE).
 
 ## TODO
 
-- [ ] Add tests
+- [x] Add tests
 - [ ] Add documentation
 - [ ] Add examples
