@@ -7,7 +7,6 @@
         "meshtastic",
         "protobuf",
         "encryption",
-        "aq==",
         "serviceenvelope",
         "meshpacket"
     ],
