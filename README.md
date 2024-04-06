@@ -16,8 +16,6 @@ This package is still under development, and has no documentation. It uses my PH
 
 ## Installation
 
-This is not yet on Packagist, and therefor you will need to update your `composer.json` to include the package direct from GitHub.
-
     composer require friendlydev/meshtastic-decode
 
 ## License
