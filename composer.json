@@ -1,0 +1,50 @@
+{
+    "name": "friendlydev/meshtastic-decode-protobufs",
+    "type": "library",
+    "description": "PHP Library to work with Meshtastic protobuf encoded and encrypted data",
+    "keywords": [
+        "friendlydev",
+        "meshtastic",
+        "protobuf",
+        "encryption",
+        "aq==",
+        "serviceenvelope",
+        "meshpacket"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alan Wynn",
+            "email": "alan.wynn@friendlydev.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-openssl": "*",
+        "friendlydev/meshtastic-protobufs": "^2.3"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "FriendlyDev\\MeshtasticDecode\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
