@@ -24,7 +24,10 @@
         "friendlydev/meshtastic-protobufs": "^2.3"
     },
     "require-dev": {
-        "pestphp/pest": "^2.3"
+        "mockery/mockery": "^1.6",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-type-coverage": "^2.8",
+        "spatie/invade": "^2.0"
     },
     "autoload": {
         "psr-4": {

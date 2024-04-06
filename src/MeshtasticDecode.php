@@ -99,7 +99,7 @@ class MeshtasticDecode
      * @param  ServiceEnvelope  $service_envelope
      * @throws ServiceEnvelopeDoesNotContainMeshPacketException
      */
-    public function decodeMeshPacket(ServiceEnvelope $service_envelope): ServiceEnvelope
+    public function decodeMeshPacket(ServiceEnvelope $service_envelope): MeshPacket
     {
         if (! $service_envelope->hasPacket()) {
             throw new ServiceEnvelopeDoesNotContainMeshPacketException;
@@ -111,7 +111,7 @@ class MeshtasticDecode
             throw new ServiceEnvelopeDoesNotContainMeshPacketException;
         }
 
-        return $service_envelope;
+        return $mesh_packet;
     }
 
     /**
@@ -127,7 +127,7 @@ class MeshtasticDecode
      */
     public function decryptMeshPacketPayload(MeshPacket $mesh_packet): MeshPacket
     {
-        if (! $mesh_packet->hasEncrypted()) {
+        if (! $mesh_packet->hasEncrypted() && ! $mesh_packet->hasDecoded()) {
             throw new MeshPacketDoesNotContainEncryptedDataException;
         }
 
@@ -183,18 +183,16 @@ class MeshtasticDecode
             $key = '1PG7OiApB1nwvP+rz05pAQ==';
         }
 
-        try {
-            $decrypted_bytes = openssl_decrypt(
-                data: base64_decode($encrypted),
-                cipher_algo: 'aes-128-ctr',
-                passphrase: base64_decode($key),
-                options: OPENSSL_RAW_DATA,
-                iv: pack('P', $id) . pack('P', $from),
-            );
-        } catch (Throwable $e) {
-            throw new EncryptedDataDecryptionFailedException(
-                previous: $e,
-            );
+        $decrypted_bytes = openssl_decrypt(
+            data: base64_decode($encrypted),
+            cipher_algo: 'aes-128-ctr',
+            passphrase: base64_decode($key),
+            options: OPENSSL_RAW_DATA,
+            iv: pack('P', $id) . pack('P', $from),
+        );
+
+        if (false === $decrypted_bytes) {
+            throw new EncryptedDataDecryptionFailedException;
         }
 
         return $decrypted_bytes;
