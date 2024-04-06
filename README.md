@@ -18,21 +18,7 @@ This package is still under development, and has no documentation. It uses my PH
 
 This is not yet on Packagist, and therefor you will need to update your `composer.json` to include the package direct from GitHub.
 
-```json
-{
-    "require": {
-        "friendlydev/meshtastic-decode": "dev-master"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/friendlydev/meshtastic-decode"
-        }
-    ]
-}
-```
-
-[//@TODO]: # (    composer require friendlydev/meshtastic-decode)
+    composer require friendlydev/meshtastic-decode
 
 ## License
 
