@@ -1,5 +1,5 @@
 {
-    "name": "friendlydev/meshtastic-decode-protobufs",
+    "name": "friendlydev/meshtastic-decode",
     "type": "library",
     "description": "PHP Library to work with Meshtastic protobuf encoded and encrypted data",
     "keywords": [
