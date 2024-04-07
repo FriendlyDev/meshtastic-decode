@@ -1,4 +1,4 @@
-# PHP Meshtastic Protobuf Definitions
+# Decode Meshtastic Protobuf Data
 
 [![Latest Stable Version](http://poser.pugx.org/friendlydev/meshtastic-decode/v)](https://packagist.org/packages/friendlydev/meshtastic-decode)
 [![Total Downloads](http://poser.pugx.org/friendlydev/meshtastic-decode/downloads)](https://packagist.org/packages/friendlydev/meshtastic-decode)
