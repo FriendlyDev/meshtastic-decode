@@ -7,6 +7,7 @@ namespace FriendlyDev\MeshtasticDecode;
 use FriendlyDev\MeshtasticDecode\Exceptions\EncryptedDataDecryptionFailedException;
 use FriendlyDev\MeshtasticDecode\Exceptions\FailedToCreateDataObjectFromDecryptedBytesException;
 use FriendlyDev\MeshtasticDecode\Exceptions\FailedToDecodeMeshPacketJsonException;
+use FriendlyDev\MeshtasticDecode\Exceptions\JsonDataProvidedException;
 use FriendlyDev\MeshtasticDecode\Exceptions\MeshPacketAlreadyContainsDecodedDataException;
 use FriendlyDev\MeshtasticDecode\Exceptions\MeshPacketDoesNotContainEncryptedDataException;
 use FriendlyDev\MeshtasticDecode\Exceptions\ServiceEnvelopeDecodeFailedException;
@@ -76,10 +77,15 @@ class MeshtasticDecode
      *
      * @param  string  $message
      * @return ServiceEnvelope
+     * @throws JsonDataProvidedException
      * @throws ServiceEnvelopeDecodeFailedException
      */
     public function decodeServiceEnvelope(string $message): ServiceEnvelope
     {
+        if (json_validate($message)) {
+            throw new JsonDataProvidedException;
+        }
+
         $service_envelope = new ServiceEnvelope;
 
         try {

@@ -1,6 +1,7 @@
 <?php
 /** @noinspection StaticClosureCanBeUsedInspection */
 
+use FriendlyDev\MeshtasticDecode\Exceptions\JsonDataProvidedException;
 use FriendlyDev\MeshtasticDecode\Exceptions\MeshPacketAlreadyContainsDecodedDataException;
 use FriendlyDev\MeshtasticDecode\Exceptions\MeshPacketDoesNotContainEncryptedDataException;
 use FriendlyDev\MeshtasticDecode\Exceptions\ServiceEnvelopeDecodeFailedException;
@@ -149,3 +150,11 @@ test('it throws an exception if its unable to decode ServiceEnvelope out of the 
 
     $meshtasticDecode->decodeServiceEnvelope(base64_decode($payload));
 })->throws(ServiceEnvelopeDecodeFailedException::class);
+
+test('it throws an exception if you passs a json string to the decode service envelope function', function () {
+    $payload = '{"channel":0,"from":4201166456,"hops_away":0,"id":935928891,"payload":{"hardware":44,"id":"!fa68b678","longname":"P2000 Portal \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000","shortname":"P200"},"rssi":-85,"sender":"!e2e52244","snr":6.5,"timestamp":1712653096,"to":4294967295,"type":"nodeinfo"}';
+
+    $meshtasticDecode = new MeshtasticDecode;
+
+    $meshtasticDecode->decodeServiceEnvelope($payload);
+})->throws(JsonDataProvidedException::class);
