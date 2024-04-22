@@ -1,10 +1,11 @@
 # Decode Meshtastic Protobuf Data
 
+[![Tests](https://github.com/friendlydev/meshtastic-decode/actions/workflows/tests.yml/badge.svg)](https://github.com/friendlydev/meshtastic-decode/actions/workflows/tests.yml)
 [![Latest Stable Version](http://poser.pugx.org/friendlydev/meshtastic-decode/v)](https://packagist.org/packages/friendlydev/meshtastic-decode)
 [![Total Downloads](http://poser.pugx.org/friendlydev/meshtastic-decode/downloads)](https://packagist.org/packages/friendlydev/meshtastic-decode)
 [![Latest Unstable Version](http://poser.pugx.org/friendlydev/meshtastic-decode/v/unstable)](https://packagist.org/packages/friendlydev/meshtastic-decode)
 [![License](http://poser.pugx.org/friendlydev/meshtastic-decode/license)](https://packagist.org/packages/friendlydev/meshtastic-decode)
-[![PHP Version Require](http://poser.pugx.org/friendlydev/meshtastic-decode/require/php)](https://packagist.org/packages/friendlydev/meshtastic-decode)
+[![PHP Version](http://poser.pugx.org/friendlydev/meshtastic-decode/require/php)](https://packagist.org/packages/friendlydev/meshtastic-decode)
 
 ## Overview
 
@@ -26,4 +27,4 @@ Please refer to [LICENSE](./LICENSE).
 
 - [x] Add tests
 - [ ] Add documentation
-- [ ] Add examples
+- [x] Add examples
