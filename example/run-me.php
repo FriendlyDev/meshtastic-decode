@@ -28,6 +28,11 @@ function outputJsonResults(string $json): void
     horizontalLineBreak();
 }
 
+$meshtastic = new MeshtasticDecode();
+$meshtastic->enableDebug();
+
+horizontalLineBreak();
+
 $serviceEnvelopes = [
     'TEXT_MESSAGE_APP' => 'CjENZTEcwRX/////IgkIARIFSGVsbG81oE1Edz3PgRBmRQAAGEFIBmC8//////////8BEghMb25nRmFzdBoJIWUyZTQ5Mzkw',
     'TELEMETRY_APP' => 'CjENwPd1+hX/////IhcIQxITDUDLD2YSDAhcFfp+gkAlws+zPjXunXhqPUDLD2ZIA1gBEghMb25nRmFzdBoJIWZhNzVmN2Mw',
@@ -43,15 +48,19 @@ $serviceEnvelopes = [
     'JSON_DATA' => base64_encode('{"channel":0,"from":4201166456,"hops_away":0,"id":935928891,"payload":{"hardware":44,"id":"!fa68b678","longname":"P2000 Portal \u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000","shortname":"P200"},"rssi":-85,"sender":"!e2e52244","snr":6.5,"timestamp":1712653096,"to":4294967295,"type":"nodeinfo"}'),
 ];
 
-$meshtastic = new MeshtasticDecode();
-$meshtastic->enableDebug();
+if (file_exists(__DIR__ . '/messages.txt')) {
+    $serviceEnvelopes = file(__DIR__ . '/messages.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-horizontalLineBreak();
+    if (empty($serviceEnvelopes)) {
+        print "No messages found in messages.txt. Please add some test data.\n";
+        exit(1);
+    }
+}
 
 foreach ($serviceEnvelopes as $packetName => $binaryData) {
     $errored = false;
 
-    print "Decoding {$packetName}\n";
+    print "Decoding {$packetName} - {$binaryData}\n";
 
     try {
         $serviceEnvelope = $meshtastic->decodeServiceEnvelope(base64_decode($binaryData));
@@ -65,11 +74,13 @@ foreach ($serviceEnvelopes as $packetName => $binaryData) {
         $errored = true;
     }
 
-    try {
-        $meshPacket = $meshtastic->decodeMeshPacket($serviceEnvelope);
-    } catch (Throwable $e) {
-        printException($e);
-        $errored = true;
+    if (! $errored) {
+        try {
+            $meshPacket = $meshtastic->decodeMeshPacket($serviceEnvelope);
+        } catch (Throwable $e) {
+            printException($e);
+            $errored = true;
+        }
     }
 
     // Decrypt the packet
@@ -89,7 +100,7 @@ foreach ($serviceEnvelopes as $packetName => $binaryData) {
         } catch (Throwable $e) {
             printException($e);
         }
-    }
 
-    outputJsonResults($serviceEnvelope->serializeToJsonString());
+        outputJsonResults($serviceEnvelope->serializeToJsonString());
+    }
 }

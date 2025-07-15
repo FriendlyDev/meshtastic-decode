@@ -12,7 +12,7 @@ class ServiceEnvelopeDecodeFailedException extends Exception
 
     protected $code = 500;
 
-    public function __construct($message = '', $code = 0, Exception $previous = null)
+    public function __construct($message = '', $code = 0, ?Exception $previous = null)
     {
         if ($message !== '') {
             $this->message = $message;

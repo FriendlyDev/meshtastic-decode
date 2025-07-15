@@ -19,14 +19,13 @@
     ],
     "require": {
         "php": "^8.3",
-        "ext-openssl": "*",
-        "friendlydev/meshtastic-protobufs": "^2.3"
+        "friendlydev/meshtastic-protobufs": "^2.7.3"
     },
     "require-dev": {
-        "mockery/mockery": "^1.6",
-        "pestphp/pest": "^2.34",
-        "pestphp/pest-plugin-type-coverage": "^2.8",
-        "spatie/invade": "^2.0"
+        "mockery/mockery": "^1.6.12",
+        "pestphp/pest": "^2.36",
+        "pestphp/pest-plugin-type-coverage": "^2.8.7",
+        "spatie/invade": "^2.1"
     },
     "autoload": {
         "psr-4": {
