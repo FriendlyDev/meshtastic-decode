@@ -102,5 +102,7 @@ foreach ($serviceEnvelopes as $packetName => $binaryData) {
         }
 
         outputJsonResults($serviceEnvelope->serializeToJsonString());
+    } else {
+        horizontalLineBreak();
     }
 }
